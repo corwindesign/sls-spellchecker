@@ -1,17 +1,18 @@
 package com.isahb.slsspellchecker;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.isahb.slsspellchecker.model.ApiGatewayResponse;
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.isahb.slsspellchecker.model.ApiGatewayResponse;
 
 /**
  * @author isahb
@@ -48,6 +49,6 @@ class HandlerTest {
         assertEquals(200, apiGatewayResponse.getStatusCode());
 
         JSONObject response = new JSONObject(apiGatewayResponse.getBody());
-        assertEquals(((JSONArray)response.get("spellCheckSuggestions")).length(), 2);
+        assertEquals(((JSONArray)response.get("matches")).length(), 2);
     }
 }
